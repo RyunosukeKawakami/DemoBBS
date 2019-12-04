@@ -50,10 +50,14 @@
         <form class="form-sign in" method="post" th:action="@{signup}" th:object="${UserAccount}">
             <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
             <h1 class="h3 mb-3 font-weight-normal">Sign up</h1>
+
+            <div th:if="${Exist == 'true'}" class="alert alert-danger" role="alert">すでに利用されています</div>
             <label for="inputUserName" class="sr-only">UserName</label>
             <input type="userName"id="inputUserName" class="form-control" placeholder="UserName" th:field="*{userName}" required autofocus />
+
             <label for="inputPassword" class="sr-only">Password</label>
             <input type="password" id="inputPassword" class="form-control" placeholder="Password" th:field="*{password}" required />
+            
             <br>
             <br>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>

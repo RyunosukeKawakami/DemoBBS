@@ -27,7 +27,7 @@ public class SignUpController {
     UserAccountRepository userAccountRepository; 
 
     @RequestMapping(value="signup/index.html")
-    public ModelAndView SignUp(@ModelAttribute @Validated UserAccount account, BindingResult result,
+    public ModelAndView SignUp(@ModelAttribute("UserAccount") @Validated UserAccount account, BindingResult result,
             ModelAndView model) {
         
         //入力値に問題がある場合、hasErrorsがTrueとなる。
@@ -38,15 +38,15 @@ public class SignUpController {
             //userNameが存在する場合は登録を行わず、
             //存在することを通知する。
             if (userAccountRepository.existsByUserName(account.getUserName())) {
-                model.addObject("Error", "alreadyExist");
+                model.addObject("Exist", "true");
                 model.setViewName("signup/index.html");
-            }
-            else {
+            } else {
                 //データベースに保存する。
                 userAccountRepository.saveAndFlush(account);
                 model.setViewName("index.html");
             }
         }
+        model.addObject("UserAccount", account);
         return model;
     }
 }
