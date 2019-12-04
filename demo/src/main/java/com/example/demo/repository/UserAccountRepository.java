@@ -9,5 +9,5 @@ import com.example.demo.entity.UserAccount;
  */
 @Repository
 public interface UserAccountRepository extends JpaRepository<UserAccount, Long>{
-
+    public boolean existsByUserName(String userID);
 }
