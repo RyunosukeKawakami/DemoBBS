@@ -8,6 +8,6 @@ import com.example.demo.entity.UserAccount;
  * UserAccountRepository
  */
 @Repository
-public interface UserAccountRepository extends JpaRepository<UserAccount, Long>{
+public interface UserAccountRepository extends JpaRepository<UserAccount, Integer>{
     public boolean existsByUserName(String userID);
 }
