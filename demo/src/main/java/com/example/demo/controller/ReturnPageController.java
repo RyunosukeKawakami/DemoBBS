@@ -15,24 +15,19 @@ public class ReturnPageController {
         return new ClassPathResource("index.html");
     }
 
-    @RequestMapping(value = "Login/index.html")
+    @RequestMapping(value = "login/index.html")
     public Resource ReturnLoginHTML() {
-        return new ClassPathResource("Login/index.html");
+        return new ClassPathResource("login/index.html");
     }
 
-    @RequestMapping(value = "Signup/index.html")
-    public Resource ReturnSignupHTML() {
-        return new ClassPathResource("Signup/index.html");
-    }
-
-    @RequestMapping(value = "Topic/index.html")
+    @RequestMapping(value = "topic/index.html")
     public Resource ReturnTopicHTML() {
-        return new ClassPathResource("Topic/index.html");
+        return new ClassPathResource("topic/index.html");
     }
 
-    @RequestMapping(value = "Contact/index.html")
+    @RequestMapping(value = "contact/index.html")
     public Resource ReturnContactHTML() {
-        return new ClassPathResource("Contact/index.html");
+        return new ClassPathResource("contact/index.html");
     }
 }
     
