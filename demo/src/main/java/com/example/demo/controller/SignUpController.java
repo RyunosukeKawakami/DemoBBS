@@ -22,30 +22,36 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.demo.repository.UserAccountRepository;
 
 @Controller
+@RequestMapping(value={"signup/index.html","/signup","signup/"})
 public class SignUpController {
     @Autowired
-    UserAccountRepository userAccountRepository; 
+    UserAccountRepository userAccountRepository;
 
-    @RequestMapping(value="signup/index.html")
+    @GetMapping
+    public ModelAndView ReturnView(@ModelAttribute("UserAccount") UserAccount account, ModelAndView model){
+        model.addObject("UserAccount", account);
+        model.setViewName("signup/index.html");
+        return model;
+    }
+    
+    @PostMapping
     public ModelAndView SignUp(@ModelAttribute("UserAccount") @Validated UserAccount account, BindingResult result,
             ModelAndView model) {
         
-        //入力値に問題がある場合、hasErrorsがTrueとなる。
-        if (result.hasErrors()) {
-            model.setViewName("signup/index.html");
-        }
-        else {
-            //userNameが存在する場合は登録を行わず、
-            //存在することを通知する。
-            if (userAccountRepository.existsByUserName(account.getUserName())) {
-                model.addObject("Exist", "true");
-                model.setViewName("signup/index.html");
-            } else {
-                //データベースに保存する。
-                userAccountRepository.saveAndFlush(account);
-                model.setViewName("index.html");
-            }
-        }
+        // //入力値に問題がある場合、hasErrorsがTrueとなる。
+        // if (result.hasErrors()) {
+        // }
+        // else {
+        //     //userNameが存在する場合は登録を行わず、
+        //     //存在することを通知する。
+        //     if (userAccountRepository.existsByUserName(account.getUserName())) {
+        //         model.addObject("Exist", "true");
+        //     } else {
+        //         //データベースに保存する。
+        //         userAccountRepository.saveAndFlush(account);
+        //     }
+        // }
+        model.setViewName("signup/index.html");
         model.addObject("UserAccount", account);
         return model;
     }
