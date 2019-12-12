@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th ="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -24,17 +24,17 @@
           <li class="nav-item">
             <a class="nav-link" href="../index.html">Home </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../login/index.html">Log in</a>
+          </li>
           <li class="nav-item active">
-            <a class="nav-link" href="index.html">Log in</a>
+            <a class="nav-link" href="index.html">Sign up</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../Signup/index.html">Sign up</a>
+            <a class="nav-link" href="../topic/index.html">Topic</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../Topic/index.html">Topic</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../Contact/index.html">Contact</a>
+            <a class="nav-link" href="../contact/index.html">Contact</a>
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
@@ -45,24 +45,30 @@
     </nav>
 
     <div class="container">
-
       <div class="starter-template">
         <h1>DemoBBS</h1>
-        <form class="form-sign in">
-            <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-            <h1 class="h3 mb-3 font-weight-normal">Please log in</h1>
-            <label for="inputEmail" class="sr-only">Email address</label>
-            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-            <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-            <br>
-            <br>
-            <button class="btn btn-lg btn-primary btn-block" type="submit"> Log in</button>
+        <form class="form-sign in" method="post" th:action="@{/signup}" th:object="${UserAccount}">
+
+          <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+          <h1 class="h3 mb-3 font-weight-normal">Sign up</h1>
+
+          <!-- バリデーションチェック -->
+          <li th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color: red"></li>
+          <li th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" style="color:red"></li>
+          <div th:if="${Exist == 'true'}" class="alert alert-danger" role="alert" color="red">すでに利用されています</div>
+
+          <label for="inputUserName" class="sr-only">UserName</label>
+          <input type="text" id="inputUserName" class="form-control" placeholder="UserName" th:field="*{userName}" required autofocus />
+
+          <label for="inputPassword" class="sr-only">Password</label>
+          <input type="password" id="inputPassword" class="form-control" placeholder="Password" th:field="*{password}" required />
+          
+          <br>
+          <br>
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
         </form>
       </div>
-
     </div><!-- /.container -->
-
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

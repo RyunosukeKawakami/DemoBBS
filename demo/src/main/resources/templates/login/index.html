@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.thymeleaf.org">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -8,7 +8,7 @@
 
     <title>DemoBBS</title>
       <link rel="stylesheet" href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css">
-      <link href="../Header.css" rel="stylesheet">
+      <link href="https://getbootstrap.com/docs/4.0/examples/starter-template/starter-template.css" rel="stylesheet">
   </head>
 
   <body>
@@ -24,17 +24,17 @@
           <li class="nav-item">
             <a class="nav-link" href="../index.html">Home </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../Login/index.html">Log in</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../Signup/index.html">Sign up</a>
-          </li>
           <li class="nav-item active">
-            <a class="nav-link" href="index.html">Topic</a>
+            <a class="nav-link" href="index.html">Log in</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../Contact/index.html">Contact</a>
+            <a class="nav-link" href="../signup/index.html">Sign up</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../topic/index.html">Topic</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../contact/index.html">Contact</a>
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
@@ -46,17 +46,19 @@
 
     <div class="container">
 
-      <div class="starter-template" th:with = "page = ${ThreadList}">
-        <h1>スレッド一覧</h1>
-
-        <div th:each = "obj:${ThreadList}"> 
-          <div class="col-md-9 col-lg-9">
-            <div class = "card mb-9 box-shadow">
-              <a href th:href="@{${obj.url}}" target="_blank" class="card-header" th:text="${obj.text}">
-              </a>
-            </div>
-          </div>
-        </div>
+      <div class="starter-template">
+        <h1>DemoBBS</h1>
+        <form class="form-sign in">
+            <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+            <h1 class="h3 mb-3 font-weight-normal">Please log in</h1>
+            <label for="inputEmail" class="sr-only">Email address</label>
+            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+            <br>
+            <br>
+            <button class="btn btn-lg btn-primary btn-block" type="submit"> Log in</button>
+        </form>
       </div>
 
     </div><!-- /.container -->
