@@ -1,7 +1,5 @@
 package com.example.demo.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,23 +8,20 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import lombok.Data;
+
 @Entity
-@Table(name="user_account")
+@Table(name = "user_account")
+@Data
 public class UserAccount{
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "userid")
     private int userID;
-    @Column(name="password")
+    @NotBlank(message = "パスワードを入力してください")
+    @Column(name="password", nullable=false)
     private String password;
-    @NotBlank
-    @Column(name="user_name")
+    @NotBlank(message = "名前を入力してください")
+    @Column(name="user_name", nullable=false, unique=true)
     private String userName;
-
-    public void setUserID(int userID) {this.userID = userID;}
-    public int getUserID() {return userID;}
-    public void setPassword(String password) {this.password = password;}
-    public String getPassword() {return password;}
-    public void setUserName(String userName) {this.userName = userName;}
-    public String getUserName() {return userName;}
 }
