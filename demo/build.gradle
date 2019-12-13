@@ -28,6 +28,10 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+    compile('org.springframework.security:spring-security-web')
+    compile('org.springframework.security:spring-security-config')
+    compile('org.thymeleaf.extras:thymeleaf-extras-springsecurity5')
 	compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.9.Final'
 	compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.4.9.Final'
 	compileOnly 'org.projectlombok:lombok'
@@ -36,6 +40,7 @@ dependencies {
 	runtimeOnly 'mysql:mysql-connector-java'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
 	testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.14.0'
 	testCompileOnly 'junit:junit:4.12'
 	testRuntimeOnly 'org.junit.vintage:junit-vintage-engine:5.3.1'
