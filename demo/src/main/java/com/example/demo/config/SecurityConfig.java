@@ -28,10 +28,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         //ログイン設定
         http.formLogin()
-            .loginProcessingUrl("/loginProcess")
+            .loginProcessingUrl("/login/loginProcess") //postで受け取るURL
             .loginPage("/login")
             .defaultSuccessUrl("/topic")
-            .usernameParameter("userName")
+            .usernameParameter("userName")  //inputのname属性に指定する文字列
             .passwordParameter("password")
             .and()
             //ログアウト設定
