@@ -24,4 +24,6 @@ public class UserAccount{
     @NotBlank(message = "名前を入力してください")
     @Column(name="user_name", nullable=false, unique=true)
     private String userName;
+    @Column(name="enabled")
+    private boolean enabled;    //無効ユーザ、有効ユーザを表す必須フラグ
 }
