@@ -55,7 +55,8 @@
             <!-- バリデーションチェック -->
             <li th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color:red"></li>
             <li th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" style="color:red"></li>
-          
+            <div th:if="${param.error}" class="alert alert-danger" role="alert" color="red">ユーザ名またはパスワードが異なります</div>
+            
             <label for="inputEmail" class="sr-only">UserName</label>
             <input type="text" name="userName" id="inputUserName" class="form-control" placeholder="UserName" required autofocus>
            
