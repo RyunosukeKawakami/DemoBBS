@@ -30,7 +30,7 @@ public class UserAccount implements UserDetails{
     @Column(name="user_name", nullable=false, unique=true)
     private String userName;
     @Column(name="enabled")
-    private boolean enabled; //無効ユーザ、有効ユーザを表す必須フラグ
+    private boolean enabled = true; //無効ユーザ、有効ユーザを表す必須フラグ
     
     public boolean getEnabled() {
         return enabled;
