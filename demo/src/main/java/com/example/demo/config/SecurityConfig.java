@@ -30,12 +30,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
             .antMatchers("/login").permitAll()
             .antMatchers("/signup").permitAll()
-            .antMatchers("/index").permitAll()
+            .antMatchers("/index.html").permitAll()
             .and()
             .formLogin()    //ログインが必要なURLの場合ログインに遷移する
             .loginProcessingUrl("/loginProcess") //postで受け取るURL
-            .loginPage("/login")
-            .defaultSuccessUrl("/topic")
+                .loginPage("/login")
+            .failureUrl("/login")
+            .defaultSuccessUrl("/login/successful")
             .usernameParameter("userName")  //inputのname属性に指定する文字列
             .passwordParameter("password")
             .and()
