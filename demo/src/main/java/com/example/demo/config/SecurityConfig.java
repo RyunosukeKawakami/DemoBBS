@@ -27,8 +27,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     protected void configure(HttpSecurity http) throws Exception {
         //ログイン設定
-        http.formLogin()
-            .loginProcessingUrl("/login/loginProcess") //postで受け取るURL
+        http.authorizeRequests()
+            .antMatchers("/login").permitAll()
+            .antMatchers("/signup").permitAll()
+            .antMatchers("/index").permitAll()
+            .and()
+            .formLogin()    //ログインが必要なURLの場合ログインに遷移する
+            .loginProcessingUrl("/loginProcess") //postで受け取るURL
             .loginPage("/login")
             .defaultSuccessUrl("/topic")
             .usernameParameter("userName")  //inputのname属性に指定する文字列
@@ -36,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
             //ログアウト設定
             .logout()
-            .logoutSuccessUrl("/index")
+            .logoutSuccessUrl("/index.html")
             .invalidateHttpSession(true);
     }
     
