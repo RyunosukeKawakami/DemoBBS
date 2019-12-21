@@ -12,12 +12,12 @@ public class ReturnPageController {
         return new ClassPathResource("index.html");
     }
 
-    @RequestMapping(value = "topic/index.html")
+    @RequestMapping(value = "/topic")
     public Resource ReturnTopicHTML() {
         return new ClassPathResource("topic/index.html");
     }
 
-    @RequestMapping(value = "contact/index.html")
+    @RequestMapping(value = "/contact")
     public Resource ReturnContactHTML() {
         return new ClassPathResource("contact/index.html");
     }

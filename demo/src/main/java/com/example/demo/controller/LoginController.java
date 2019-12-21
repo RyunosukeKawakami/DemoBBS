@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Controller
-@RequestMapping(value={"login/index.html","/login","login/"})
+@RequestMapping(value={"/login",})
 public class LoginController{
     @Autowired
     UserAccountRepository userAccountRepository;    
