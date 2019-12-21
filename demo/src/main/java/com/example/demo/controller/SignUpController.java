@@ -15,7 +15,7 @@ import com.example.demo.repository.UserAccountRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-@RequestMapping(value={"signup/index.html","/signup","signup/"})
+@RequestMapping(value="/signup")
 public class SignUpController {
     @Autowired
     UserAccountRepository userAccountRepository;
