@@ -11,30 +11,34 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Controller
-@RequestMapping(value="/login")
 public class LoginController{
     @Autowired
     UserAccountRepository userAccountRepository;    
 
-    @GetMapping    
+    @RequestMapping(value="/login",method = RequestMethod.GET)
     public ModelAndView ReturnView(@ModelAttribute("UserAccount") UserAccount account, ModelAndView model) {
         model.addObject("UserAccount", account);
         model.setViewName("login/index.html");
         return model;
     }
 
-    @PostMapping
+    @RequestMapping(value="/login",method = RequestMethod.POST)
     public ModelAndView Login(@ModelAttribute("UserAccount") @Validated UserAccount account, BindingResult result,
             ModelAndView model) {
         if (result.hasErrors()) {
             model.setViewName("login/index.html");
         }
-        model.setViewName("forward:loginProcess");
+
+        return model;
+    }
     
+    @RequestMapping(value="/login/successful")
+    public ModelAndView loginSuccessfulView(@Validated UserAccount account, ModelAndView model) {
+        model.setViewName("login/successful.html");
         return model;
     }
 }

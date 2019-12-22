@@ -48,7 +48,7 @@
 
       <div class="starter-template">
         <h1>DemoBBS</h1>
-        <form class="form-sign in" method="post" th:action="@{/loginProcess}" th:object="${UserAccount}">
+        <form class="form-sign in" method="post" th:action="@{/login}" th:object="${UserAccount}">
             <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
             <h1 class="h3 mb-3 font-weight-normal">Log in</h1>
 
@@ -58,10 +58,10 @@
             <div th:if="${param.error}" class="alert alert-danger" role="alert" color="red">ユーザ名またはパスワードが異なります</div>
             
             <label for="inputEmail" class="sr-only">UserName</label>
-            <input type="text" name="userName" id="inputUserName" class="form-control" placeholder="UserName" required autofocus>
+            <input type="text" name="userName" id="inputUserName" class="form-control" placeholder="UserName" th:field="*{userName}" required autofocus>
            
             <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+            <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" th:field="*{password}" required>
             <br>
             <br>
             <button class="btn btn-lg btn-primary btn-block" type="submit"> Log in</button>
