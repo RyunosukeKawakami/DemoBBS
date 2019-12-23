@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 
+import com.example.demo.config.PasswordEncodeService;
 import com.example.demo.entity.UserAccount;
 import com.example.demo.repository.UserAccountRepository;
 
@@ -19,6 +20,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class SignUpController {
     @Autowired
     UserAccountRepository userAccountRepository;
+
+    @Autowired
+    PasswordEncodeService passwordEncoderService;
 
     @GetMapping
     public ModelAndView ReturnView(@ModelAttribute("UserAccount") UserAccount account, ModelAndView model){
@@ -42,6 +46,8 @@ public class SignUpController {
                 model.setViewName("signup/index.html");
                 model.addObject("Exist", "true");
             } else {
+                //ハッシュ化したパスワードを保持する
+                account = passwordEncoderService.CreateHashPassword(account);
                 //データベースに保存する。
                 userAccountRepository.saveAndFlush(account);
                 model.setViewName("index.html");
