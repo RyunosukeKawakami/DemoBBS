@@ -30,14 +30,15 @@ public class LoginController{
     public ModelAndView Login(@ModelAttribute("UserAccount") @Validated UserAccount account, BindingResult result,
             ModelAndView model) {
         if (result.hasErrors()) {
+
             model.setViewName("login/index.html");
         }
-
+        model.setViewName("forward:loginProcess");
         return model;
     }
     
     @RequestMapping(value="/login/successful")
-    public ModelAndView loginSuccessfulView(@Validated UserAccount account, ModelAndView model) {
+    public ModelAndView loginSuccessfulView(ModelAndView model) {
         model.setViewName("login/successful.html");
         return model;
     }
