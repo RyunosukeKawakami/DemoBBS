@@ -44,6 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login").permitAll()
                 .antMatchers("/signup").permitAll()
                 .antMatchers("/index.html").permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .formLogin() //ログインが必要なURLの場合ログインに遷移する
                 .loginProcessingUrl("/loginProcess") //spring securityで認証するURL
