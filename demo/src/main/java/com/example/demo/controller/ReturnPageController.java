@@ -4,27 +4,26 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class ReturnPageController {
     @RequestMapping(value = "/index.html")
-    public Resource ReturnHomeHTML() {
-        return new ClassPathResource("index.html");
+    public ModelAndView ReturnHomeHTML(ModelAndView model) {
+        model.setViewName("index.html");
+        return model;
     }
 
-    @RequestMapping(value = "login/index.html")
-    public Resource ReturnLoginHTML() {
-        return new ClassPathResource("login/index.html");
+    @RequestMapping(value = "/topic")
+    public ModelAndView ReturnTopicHTML(ModelAndView model) {
+        model.setViewName("topic/index.html");
+        return model;
     }
 
-    @RequestMapping(value = "topic/index.html")
-    public Resource ReturnTopicHTML() {
-        return new ClassPathResource("topic/index.html");
-    }
-
-    @RequestMapping(value = "contact/index.html")
-    public Resource ReturnContactHTML() {
-        return new ClassPathResource("contact/index.html");
+    @RequestMapping(value = "/contact")
+    public ModelAndView ieturnContactHTML(ModelAndView model) {
+        model.setViewName("contact/index.html");
+        return model;
     }
 }
     
