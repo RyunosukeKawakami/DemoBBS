@@ -8,7 +8,7 @@
 
     <title>DemoBBS</title>
       <link rel="stylesheet" href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css">
-      <link href="../Header.css" rel="stylesheet">
+      <link href="https://getbootstrap.com/docs/4.0/examples/starter-template/starter-template.css" rel="stylesheet">
   </head>
 
   <body>
@@ -45,20 +45,19 @@
     </nav>
 
     <div class="container">
-
-      <div class="starter-template" th:with = "page = ${ThreadList}">
-        <h1>スレッド一覧</h1>
-
-        <div th:each = "obj:${ThreadList}"> 
-          <div class="col-md-9 col-lg-9">
-            <div class = "card mb-9 box-shadow">
-              <a href th:href="@{${obj.url}}" target="_blank" class="card-header" th:text="${obj.text}">
-              </a>
+      <div class="starter-template">
+        <h3>スレッド一覧</h3>
+        
+        <div class="pull-left">
+          <div class="card">
+            <h5 class="card-header">カードのヘッダ</h5>
+            <div class="card-body">
+              <p class="card-text">以下のテキストを追加のコンテンツへの自然な導入としてサポート。</p>
+              <a href="#" class="btn btn-primary">ボタン</a>
             </div>
           </div>
         </div>
       </div>
-
     </div><!-- /.container -->
 
 
