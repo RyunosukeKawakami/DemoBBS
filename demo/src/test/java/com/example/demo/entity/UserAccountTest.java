@@ -12,6 +12,9 @@ import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
+/**
+ * UserAccountのバリデーション機能のテストクラス
+ */
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class UserAccountTest {
