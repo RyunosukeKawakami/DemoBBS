@@ -1,12 +1,12 @@
 package com.example.demo.repository;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 import com.example.demo.entity.Thread;;
 
 /**
  * ThreadRepository
  */
 @Repository
-public class ThreadRepository extends JpaRepository<Thread,Integer>{
+public class ThreadRepository extends CrudRepository<Thread,Integer>{
 }

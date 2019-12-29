@@ -12,12 +12,6 @@ public class ReturnPageController {
         return model;
     }
 
-    @RequestMapping(value = "/topic")
-    public ModelAndView ReturnTopicHTML(ModelAndView model) {
-        model.setViewName("topic/index.html");
-        return model;
-    }
-
     @RequestMapping(value = "/contact")
     public ModelAndView returnContactHTML(ModelAndView model) {
         model.setViewName("contact/index.html");
