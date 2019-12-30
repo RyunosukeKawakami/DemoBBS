@@ -48,12 +48,16 @@
       <div class="starter-template">
         <h3>スレッド一覧</h3>
         
-        <!-- スレッドを表すカード -->
-        <div class="float-md-1-left">
-          <div class="card">
-            <h5 class="card-header">スレッドのタイトル</h5>
-            <div class="card-body">
-              <p class="card-text">ここに1スレッド目が表示される予定</p>
+        <div th:each="thread:${ThreadList}">
+          <!-- スレッドを表すカード -->
+          <div class="float-md-1-left">
+            <div class="card">
+              <h5 class="card-header" th:text="${thread.title}"></h5>
+              <div class="card-body">
+                <p class="card-text" th:text="${thread.author}"></p>
+                <p class="card-text" th:text="${thread.create_date}"></p>
+                <p class="card-text">ここに1スレッド目が表示される予定</p>
+              </div>
             </div>
           </div>
         </div>

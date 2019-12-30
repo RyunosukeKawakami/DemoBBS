@@ -1,8 +1,7 @@
 package com.example.demo.controller;
 
-import java.util.List;
-
 import com.example.demo.repository.ThreadRepository;
+import com.example.demo.entity.Thread;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +16,7 @@ public class TopicController {
     @Autowired
     ThreadRepository repository;
     
-    List<Thread> threadList;
+    Iterable<Thread> threadList;
 
     @RequestMapping(value = "/topic")
     public ModelAndView ReturnTopicHTML(ModelAndView model) {

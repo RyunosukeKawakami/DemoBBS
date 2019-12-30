@@ -48,15 +48,20 @@
       <div class="starter-template">
         <h3>スレッド一覧</h3>
         
-        <div class="pull-left">
-          <div class="card">
-            <h5 class="card-header">カードのヘッダ</h5>
-            <div class="card-body">
-              <p class="card-text">以下のテキストを追加のコンテンツへの自然な導入としてサポート。</p>
-              <a href="#" class="btn btn-primary">ボタン</a>
+        <div th:each="thread:${ThreadList}">
+          <!-- スレッドを表すカード -->
+          <div class="float-md-1-left">
+            <div class="card">
+              <h5 class="card-header" th:text="${thread.title}"></h5>
+              <div class="card-body">
+                <p class="card-text" th:text="${thread.author}"></p>
+                <p class="card-text" th:text="${thread.create_date}"></p>
+                <p class="card-text">ここに1スレッド目が表示される予定</p>
+              </div>
             </div>
           </div>
         </div>
+
       </div>
     </div><!-- /.container -->
 
