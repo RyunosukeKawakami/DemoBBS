@@ -7,34 +7,37 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
  * TopicController
  */
 @Controller
-public class TopicController {
+@RequestMapping("/topic/createThread")
+public class CreateThreadController {
     @Autowired
     ThreadRepository repository;
 
-    @RequestMapping(value = "/createThread", method = RequestMethod.GET)
+    @GetMapping
     public ModelAndView ReturnThreadView(@ModelAttribute("Thread") Thread thread, ModelAndView model) {
         model.setViewName("topic/createThread.html");
         return model;
     }
 
-    @RequestMapping(value = "/createThread", method = RequestMethod.POST)
+    @PostMapping
     public ModelAndView CreateThread(@ModelAttribute("Thread") @Validated Thread thread, BindingResult result,
             ModelAndView model) {
-        if(result.hasErrors()){
+        if (result.hasErrors()) {
             model.setViewName("topic/createThread.html");
             return model;
         }
+        //データベースに保存するサービスを書く予定
 
-        model.addObject();
+        model.addObject("Thread",thread);
         model.setViewName("topic/createThread.html");
         return model;
     }

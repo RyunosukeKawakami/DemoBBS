@@ -50,11 +50,13 @@
         <div class="starter-template">
             <h3>スレッド作成</h3>
 
+
             <!-- スレッド制作フォームを表すカード -->
             <div class="float-md-1-left card">
-                <form method="post" th:object="${Thread}">
+                <form method="post" th:object="${Thread}" th:action="@{/topic/createThread}">
                     <h5 class="card-header text-left">スレッド</h5>
                     <div class="card-body">
+                        <li th:if="${#fields.hasErrors('title')}" th:errors="*{title}" style="color:red"></li>
                         <p class="card-text text-left">スレッドタイトル (30文字以内)</p>
                         <input type="text" class="form-control" placeholder="スレッドのタイトル" th:field="*{title}">
                         <p class="card-text"></p>
