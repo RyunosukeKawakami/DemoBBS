@@ -25,6 +25,5 @@ public class ThreadSave {
         thread.setTitle(title);
         thread.setAuthor(principal.getName());
         thread.setCreateDate(new Date());
-        //setURLを記述する予定
     }
 }

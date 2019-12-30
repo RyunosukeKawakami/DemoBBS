@@ -1,9 +1,11 @@
 package com.example.demo.entity;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
@@ -16,6 +18,7 @@ import lombok.Data;
 @Data
 public class Thread {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id")
     private int id;
     @NotBlank(message = "タイトルを入力してください")
@@ -26,6 +29,4 @@ public class Thread {
     private String author;
     @Column(name="create_date")
     private Date createDate;
-    @Column(name="URL")
-    private String url;
 }
