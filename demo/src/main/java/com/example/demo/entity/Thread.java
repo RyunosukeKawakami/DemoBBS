@@ -25,7 +25,7 @@ public class Thread {
     @Column(name="author")
     private String author;
     @Column(name="create_date")
-    private Date create_date;
+    private Date createDate;
     @Column(name="URL")
     private String url;
 }
