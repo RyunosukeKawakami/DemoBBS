@@ -1,6 +1,9 @@
 package com.example.demo.controller;
 
 import com.example.demo.repository.ThreadRepository;
+
+import java.security.Principal;
+
 import com.example.demo.entity.Thread;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +31,17 @@ public class CreateThreadController {
         return model;
     }
 
+    /**
+     * 
+     * @param thread
+     * @param result バリデーションチェック
+     * @param model
+     * @param principal ログイン中のユーザ情報を受け取る
+     * @return
+     */
     @PostMapping
     public ModelAndView CreateThread(@ModelAttribute("Thread") @Validated Thread thread, BindingResult result,
-            ModelAndView model) {
+            ModelAndView model, Principal principal) {
         if (result.hasErrors()) {
             model.setViewName("topic/createThread.html");
             return model;
