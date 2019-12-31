@@ -42,7 +42,7 @@ public class CreateThreadController {
      * @param principal ログイン中のユーザ情報を受け取る
      * @return
      */
-    @PostMappingprincipal
+    @PostMapping
     public ModelAndView CreateThread(@ModelAttribute("Thread") @Validated Thread thread, BindingResult result,
             ModelAndView model, Principal principal) {
         if (result.hasErrors()) {
