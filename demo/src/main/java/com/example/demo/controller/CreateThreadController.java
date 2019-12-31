@@ -5,6 +5,7 @@ import com.example.demo.repository.ThreadRepository;
 import java.security.Principal;
 
 import com.example.demo.entity.Thread;
+import com.example.demo.service.ThreadSave;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,8 @@ public class CreateThreadController {
     @Autowired
     ThreadRepository repository;
 
+    ThreadSave save;
+
     @GetMapping
     public ModelAndView ReturnThreadView(@ModelAttribute("Thread") Thread thread, ModelAndView model) {
         model.setViewName("topic/createThread.html");
@@ -39,7 +42,7 @@ public class CreateThreadController {
      * @param principal ログイン中のユーザ情報を受け取る
      * @return
      */
-    @PostMapping
+    @PostMappingprincipal
     public ModelAndView CreateThread(@ModelAttribute("Thread") @Validated Thread thread, BindingResult result,
             ModelAndView model, Principal principal) {
         if (result.hasErrors()) {
@@ -47,6 +50,7 @@ public class CreateThreadController {
             return model;
         }
         //データベースに保存するサービスを書く予定
+        save.SaveThread(principal, thread.getTitle());
 
         model.addObject("Thread",thread);
         model.setViewName("topic/createThread.html");

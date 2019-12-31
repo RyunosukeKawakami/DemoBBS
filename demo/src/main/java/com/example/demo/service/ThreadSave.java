@@ -25,5 +25,7 @@ public class ThreadSave {
         thread.setTitle(title);
         thread.setAuthor(principal.getName());
         thread.setCreateDate(new Date());
+
+        repository.save(thread);
     }
 }
