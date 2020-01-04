@@ -56,14 +56,16 @@
                 <form method="post" th:object="${Thread}" th:action="@{/topic/createThread}">
                     <h5 class="card-header text-left">スレッド</h5>
                     <div class="card-body">
+                        <!-- バリデーションチェック -->
                         <li th:if="${#fields.hasErrors('title')}" th:errors="*{title}" style="color:red"></li>
+                        
                         <p class="card-text text-left">スレッドタイトル (30文字以内)</p>
-                        <input type="text" class="form-control" placeholder="スレッドのタイトル" th:field="*{title}">
+                        <input type="text" id="inputThreadTitle" class="form-control" placeholder="スレッドのタイトル" name="title" th:field="*{title}">
                         <p class="card-text"></p>
                     </div>
                     <br>
                     <br>
-                    <button class="btn btn-lg btn-primary w-25" type="submit">作成</button>
+                    <button class="btn btn-lg btn-primary w-25" type="submit">作成</button>""
                 </form>
             </div>
 
