@@ -54,10 +54,12 @@
           <div class="float-md-1-left">
             <div class="card">
               <h5 class="card-header" th:text="${thread.title}"></h5>
+              <!-- 作者とログインユーザーが同じ時に削除する -->
+              <span class="label label-danger" th:if="${thread.author eq LoginUser.userName}">削除</span>
               <div class="card-body">
-                <p class="card-text" th:text="${thread.author}"></p>
-                <p class="card-text" th:text="${thread.createDate}"></p>
-                <p class="card-text">ここに1スレッド目が表示される予定</p>
+                <p class="card-text text-left" th:text="'製作者：'+ ${thread.author}"></p>
+                <p class="card-text text-left" th:text="'作成日：'+ ${thread.createDate}"></p>
+                <p class="card-text text-left text-muted" color="gray">ここに1スレッド目が表示される予定</p>
               </div>
             </div>
           </div>
