@@ -26,6 +26,7 @@ public class CreateThreadController {
     @Autowired
     ThreadRepository repository;
 
+    @Autowired
     ThreadSave save;
 
     @GetMapping
@@ -45,15 +46,17 @@ public class CreateThreadController {
     @PostMapping
     public ModelAndView CreateThread(@ModelAttribute("Thread") @Validated Thread thread, BindingResult result,
             ModelAndView model, Principal principal) {
+        
         if (result.hasErrors()) {
+            model.addObject("Thread", thread);
             model.setViewName("topic/createThread.html");
-            return model;
-        }
-        //データベースに保存するサービスを書く予定
-        save.SaveThread(principal, thread.getTitle());
+        } else {
+            // データベースにスレッドを保存する
+            save.SaveThread(principal, thread);
 
-        model.addObject("Thread",thread);
-        model.setViewName("topic/createThread.html");
+            model.addObject("Thread", thread);
+            model.setViewName("topic/createThread.html");
+        }
         return model;
     }
 
