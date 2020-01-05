@@ -60,9 +60,9 @@
                 <p class="card-text" th:text="'作成日：'+ ${thread.createDate}"></p>
                 <p class="card-text text-muted" color="gray">ここに1スレッド目が表示される予定</p>
                 <!-- 削除ボタン -->
-                <from method="delete" th:action="@{/topic}">
+                <form method="post" th:action="@{/topic(id=${thread.id})}">
                 <button class="btn btn-danger btn-xs">削除</button>
-                </from>
+                </form>
               </div>
             </div>
           </div>
