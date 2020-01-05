@@ -57,6 +57,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutSuccessUrl("/index.html")
                 .invalidateHttpSession(true);
+        
+        //デフォルトでCSRFトークンが有効なので無効にする
+        http.csrf().disable();
     }
     
     @Configuration
