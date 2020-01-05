@@ -51,13 +51,13 @@
         
         <div th:each="thread:${ThreadList}">
           <!-- スレッドを表すカード -->
-          <div class="float-md-1-left">
+          <div class="float-md-3-left">
             <div class="card">
-              <h5 class="card-header" th:text="${thread.title}"></h5>
+              <h5 class="card-header text-left" th:text="${thread.title}"></h5>
               <div class="card-body text-left">
-                <p class="card-text" th:text="'製作者：'+ ${thread.author}"></p>
-                <p class="card-text" th:text="'作成日：'+ ${thread.createDate}"></p>
-                <p class="card-text text-muted" color="gray">ここに1スレッド目が表示される予定</p>
+                <p class="card-text my-sm-1" th:text="'製作者：'+ ${thread.author}"></p>
+                <p class="card-text my-sm-1" th:text="'作成日：'+ ${thread.createDate}"></p>
+                <p class="card-text text-muted my-sm-1" color="gray">ここに1スレッド目が表示される予定</p>
                 <!-- 削除ボタン -->
                 <!-- 作者とログインユーザーが同じ時に削除する -->
                 <form method="post" th:action="@{/topic(id=${thread.id})}" th:if="${thread.author eq LoginUser.userName}">
