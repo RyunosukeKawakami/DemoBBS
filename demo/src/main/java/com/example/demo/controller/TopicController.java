@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -17,15 +19,15 @@ import org.springframework.web.servlet.ModelAndView;
  * TopicController
  */
 @Controller
+@RequestMapping(value = "/topic")
 public class TopicController {
     @Autowired
     ThreadRepository repository;
     Iterable<Thread> threadList;
 
-    @RequestMapping(value = "/topic")
+    @GetMapping
     public ModelAndView ReturnTopicHTML(ModelAndView model, Principal Principal) {
         threadList = repository.findAll();
-
         Authentication auth = (Authentication) Principal;
         UserDetails account = (UserDetails) auth.getPrincipal();
 
@@ -33,5 +35,11 @@ public class TopicController {
         model.addObject("ThreadList", threadList);
         model.setViewName("topic/index.html");
         return model;
-    }    
+    }
+    
+    @DeleteMapping
+    public ModelAndView DeleteThread(ModelAndView model) {
+                
+        return model;
+    }
 }
