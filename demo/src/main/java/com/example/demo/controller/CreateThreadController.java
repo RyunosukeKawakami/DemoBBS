@@ -55,7 +55,7 @@ public class CreateThreadController {
             save.SaveThread(principal, thread);
 
             model.addObject("Thread", thread);
-            model.setViewName("topic/createThread.html");
+            model.setViewName("redirect:/topic");
         }
         return model;
     }
