@@ -53,7 +53,9 @@
           <!-- スレッドを表すカード -->
           <div class="float-md-3-left">
             <div class="card">
-              <h5 class="card-header text-left" th:text="${thread.title}"></h5>
+              <a class="card-header text-left btn btn-link" th:href="@{/topic/thread/__${thread.id}__}">
+                <h5 th:text="${thread.title}"></h5>
+              </a>
               <div class="card-body text-left">
                 <p class="card-text my-sm-1" th:text="'製作者：'+ ${thread.author}"></p>
                 <p class="card-text my-sm-1" th:text="'作成日：'+ ${thread.createDate}"></p>
