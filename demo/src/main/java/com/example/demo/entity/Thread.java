@@ -33,5 +33,5 @@ public class Thread {
     private Date createDate;
 
     @OneToMany(mappedBy = "threadFk")
-    private List<ThreadDetail> threadDetail;
+    private List<Response> responses;
 }

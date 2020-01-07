@@ -17,9 +17,9 @@ import javax.validation.constraints.Size;
 import lombok.Data;
 
 @Entity
-@Table(name = "thread_detail")
+@Table(name = "response")
 @Data
-public class ThreadDetail{
+public class Response{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -35,6 +35,7 @@ public class ThreadDetail{
     @Column(name = "text")
     private String text;
 
+    //外部キーを表している
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "thread_id", referencedColumnName = "id")
     private Thread threadFk;
