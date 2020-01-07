@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @RequestMapping(path = "/topic/thread/{id}")
 @Controller
-public class ThreadDetails {
+public class ThreadController {
     @GetMapping
     public ModelAndView ReturnThreadDetails(@PathVariable int id, ModelAndView model) {
         model.setViewName("topic/thread.html");
