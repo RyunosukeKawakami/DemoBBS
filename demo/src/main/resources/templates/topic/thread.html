@@ -56,6 +56,12 @@
 
             <!-- スレッド投稿フォームを表すカード -->
             <div class="float card">
+                <form method="post" th:action="@{/topic/thread/__${thread_id}__}" th:object="${Response}">
+                    <label class="sr-only">投稿フォーム</label>
+                    <textarea rows="5" class="form-control" th:field="*{text}" placeholder="投稿するテキストを入力"></textarea>
+                    <br>
+                    <button class="btn btn-lg btn-primary w-25" type="submit">投稿</button>
+                </form>
             </div>
 
         </div>
