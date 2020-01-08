@@ -24,14 +24,14 @@ public class Response{
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private int id;
-    @Size(min = 1, max = 300, message = "文字数オーバーです")
     @Column(name = "author")
     private String author;
     @Column(name = "date")
     private Date date;
     @Column(name = "good_num")
-    private int num;
+    private int goodNum;
     @NotBlank(message = "文章を記述してません")
+    @Size(min = 1, max = 300, message = "文字数オーバーです")
     @Column(name = "text")
     private String text;
 
