@@ -27,7 +27,7 @@ public class Response{
     @Column(name = "thread_id")
     private int threadId;
     @Column(name = "response_id")
-    private int responseId = 1;
+    private int responseId;
     @Column(name = "author")
     private String author;
     @Column(name = "date")

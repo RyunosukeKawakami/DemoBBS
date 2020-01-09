@@ -35,19 +35,20 @@ public class ResponseSave {
         if (responseRepository.existsByThreadId(thread_id)) {
             //最新のResponseIdより+1大きいIDを付与する
             int max_response = GetLargestResponseId(thread_id);
-            response.setResponseId(max_response + 1);
+            max_response += 1;
+            response.setResponseId(max_response);
         }
         else{
             response.setResponseId(1);
         }
 
         response.setThreadId(thread_id);
-        response.setText(response.getText());
         response.setGoodNum(0);
         response.setAuthor(account.getUsername());
         response.setDate(new Date());
+        response.setText(response.getText());
 
-        responseRepository.save(response);
+        responseRepository.saveAndFlush(response);
     }
 
     /**
