@@ -31,10 +31,11 @@ public class ThreadController {
     Iterable<Response> response;
 
     @GetMapping
-    public ModelAndView ReturnThreadDetails(@ModelAttribute("Response") Response postResponse, ModelAndView model) {
+    public ModelAndView ReturnThreadDetails(@ModelAttribute("Response") Response postResponse, @PathVariable int id, ModelAndView model) {
         response = repository.findAll();
         model.addObject("ResponseList", response);
         model.addObject("Response", postResponse);
+        model.addObject("thread_id", id);
         model.setViewName("topic/thread.html");
         return model;
     }

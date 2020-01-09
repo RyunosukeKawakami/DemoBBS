@@ -51,19 +51,23 @@
             <h3>スレッドタイトル</h3>
 
             <!-- レスポンスを表すカード -->
-            <div class="float-md-1-left card">
-                <div class="card" th:each="response:${ResponseList}">
-                    <div class="card-head">
-                        <p class="card-text my-sm-1" th:text="${response.id}"></p>
-                        <p class="card-text my-sm-1" th:text="${response.author}"></p>
-                        <p class="card-text my-sm-1" th:text="${response.date}"></p>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text my-sm-1" th:text="${response.text}"></p>
+            <div th:each="response:${ResponseList}">
+                <div class="float-md-1-left">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-text my-sm-1 row">
+                                <div class="text-left col-2" th:text="|${response.responseId}：|"></div>
+                                <div class="col-2" th:text="|${response.author}|"></div>
+                                <div class="pull-right col-6" th:text="${response.date}"></div>
+                            </div>
+                        </div>
+                        <div class="card-body text-left">
+                            <p class="card-text my-sm-1" th:text="${response.text}"></p>
+                        </div>
                     </div>
                 </div>
             </div>
-
+            
             <!-- レスポンス投稿フォームを表すカード -->
             <div class="float card">
                 <form method="post" th:action="@{/topic/thread/__${thread_id}__}" th:object="${Response}">
