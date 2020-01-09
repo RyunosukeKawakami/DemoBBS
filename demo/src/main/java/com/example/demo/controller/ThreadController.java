@@ -28,12 +28,12 @@ public class ThreadController {
     @Autowired
     ResponseSave save;
 
-    Iterable<Response> response;
+    Iterable<Response> responseList;
 
     @GetMapping
     public ModelAndView ReturnThreadDetails(@ModelAttribute("Response") Response postResponse, @PathVariable int id, ModelAndView model) {
-        response = repository.findAll();
-        model.addObject("ResponseList", response);
+        responseList = repository.findAllByThreadId(id);
+        model.addObject("ResponseList", responseList);
         model.addObject("Response", postResponse);
         model.addObject("thread_id", id);
         model.setViewName("topic/thread.html");
@@ -51,8 +51,8 @@ public class ThreadController {
         else {
             save.SaveResponse(principal, postResponse, id);
 
-            response = repository.findAll();
-            model.addObject("ResponseList", response);
+            responseList = repository.findAllByThreadId(id);
+            model.addObject("ResponseList", responseList);
             model.addObject("Response", postResponse);
             model.addObject("thread_id", id);
             model.setViewName("topic/thread.html");
