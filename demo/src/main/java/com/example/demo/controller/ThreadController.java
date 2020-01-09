@@ -49,8 +49,9 @@ public class ThreadController {
             model.setViewName("redirect:/topic/thread/{id}");
         }
         else {
-            save.SaveResponse(principal, postResponse);
+            save.SaveResponse(principal, postResponse, id);
 
+            response = repository.findAll();
             model.addObject("ResponseList", response);
             model.addObject("Response", postResponse);
             model.addObject("thread_id", id);
