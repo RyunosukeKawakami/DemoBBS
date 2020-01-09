@@ -24,6 +24,10 @@ public class Response{
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private int id;
+    @Column(name = "thread_id")
+    private int threadId;
+    @Column(name = "response_id")
+    private int responseId = 1;
     @Column(name = "author")
     private String author;
     @Column(name = "date")
@@ -34,9 +38,4 @@ public class Response{
     @Size(min = 1, max = 300, message = "文字数オーバーです")
     @Column(name = "text")
     private String text;
-
-    //外部キーを表している
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "thread_id", referencedColumnName = "id")
-    private Thread threadFk;
 }

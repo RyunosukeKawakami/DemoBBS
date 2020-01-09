@@ -31,7 +31,4 @@ public class Thread {
     private String author;
     @Column(name = "create_date")
     private Date createDate;
-
-    @OneToMany(mappedBy = "threadFk")
-    private List<Response> responses;
 }
