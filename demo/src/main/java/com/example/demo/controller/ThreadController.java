@@ -6,6 +6,7 @@ import com.example.demo.entity.Response;
 import com.example.demo.repository.ResponseRepository;
 import com.example.demo.service.ResponseSave;
 
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * ThreadDetails
@@ -31,33 +34,32 @@ public class ThreadController {
     Iterable<Response> responseList;
 
     @GetMapping
-    public ModelAndView ReturnThreadDetails(@ModelAttribute("Response") Response postResponse, @PathVariable int id, ModelAndView model) {
-        responseList = repository.findAllByThreadId(id);
-        model.addObject("ResponseList", responseList);
-        model.addObject("Response", postResponse);
-        model.addObject("thread_id", id);
-        model.setViewName("topic/thread.html");
+    public ModelAndView ReturnThreadDetails(@ModelAttribute("Response") Response postResponse, @PathVariable int id,
+            ModelAndView model) {
+        addObjectThread(model, responseList, postResponse, id);
         return model;
     }
 
     @PostMapping
-    public ModelAndView PostText(@ModelAttribute("Response") @Validated Response postResponse, @PathVariable int id, Principal principal,
-        BindingResult result, ModelAndView model) {
-        
+    public ModelAndView PostText(@ModelAttribute("Response") @Validated Response postResponse, BindingResult result,
+            @PathVariable int id, Principal principal, ModelAndView model) {
+
         if (result.hasErrors()) {
-            //getマッピングにリダイレクト
-            model.setViewName("redirect:/topic/thread/{id}");
+            addObjectThread(model, responseList, postResponse, id);
         }
         else {
             save.SaveResponse(principal, postResponse, id);
-
-            responseList = repository.findAllByThreadId(id);
-            model.addObject("ResponseList", responseList);
-            model.addObject("Response", postResponse);
-            model.addObject("thread_id", id);
-            model.setViewName("topic/thread.html");
+            addObjectThread(model, responseList, postResponse, id);
         }
+        return model;
+    }
 
+    private ModelAndView addObjectThread(ModelAndView model, Iterable<Response> responseList, Response postResponse, int thread_id) {
+        responseList = repository.findAllByThreadId(thread_id);
+        model.addObject("ResponseList", responseList);
+        model.addObject("response", postResponse);
+        model.addObject("thread_id", thread_id);
+        model.setViewName("topic/thread.html");
         return model;
     }
 
