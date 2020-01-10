@@ -8,5 +8,6 @@ import com.example.demo.entity.Thread;
  * ThreadRepository
  */
 @Repository
-public interface ThreadRepository extends CrudRepository<Thread,Integer>{
+public interface ThreadRepository extends CrudRepository<Thread, Integer> {
+    public Thread findById(int id);
 }

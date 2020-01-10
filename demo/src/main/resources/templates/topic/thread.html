@@ -48,7 +48,7 @@
 
     <div class="container">
         <div class="starter-template">
-            <h3>スレッドタイトル</h3>
+            <h3 th:text="${threadTitle}"></h3>
 
             <!-- レスポンスを表すカード -->
             <div th:each="response:${ResponseList}">
