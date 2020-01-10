@@ -30,7 +30,7 @@ public class ResponseSave {
     public void SaveResponse( Principal principal, Response response, int thread_id) {
         Authentication auth = (Authentication) principal;
         account = (UserDetails) auth.getPrincipal();
-
+        
         //1スレッド目が存在するか、しないかを場合分け
         if (responseRepository.existsByThreadId(thread_id)) {
             //最新のResponseIdより+1大きいIDを付与する
@@ -38,17 +38,17 @@ public class ResponseSave {
             max_response += 1;
             response.setResponseId(max_response);
         }
-        else{
+        else {
             response.setResponseId(1);
         }
-
+        response.setId(0);
         response.setThreadId(thread_id);
-        response.setGoodNum(0);
         response.setAuthor(account.getUsername());
         response.setDate(new Date());
+        response.setGoodNum(0);
         response.setText(response.getText());
 
-        responseRepository.saveAndFlush(response);
+        responseRepository.save(response);
     }
 
     /**
