@@ -35,7 +35,7 @@ public class Response{
     @Column(name = "good_num")
     private int goodNum;
     @NotBlank(message = "文章を記述してません")
-    @Size(min = 1, max = 300, message = "文字数オーバーです")
+    @Size(min = 0, max = 300, message = "文字数オーバーです")
     @Column(name = "text")
     private String text;
 }
