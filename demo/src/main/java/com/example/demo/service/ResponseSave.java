@@ -51,6 +51,15 @@ public class ResponseSave {
         responseRepository.save(response);
     }
 
+    public void SaveGoodNum(int id) {
+        Response response = responseRepository.findById(id);
+        int goodNum = response.getGoodNum();
+        goodNum++;
+        response.setGoodNum(goodNum);
+
+        responseRepository.save(response);
+    }
+    
     /**
      * スレッド内で最も大きいResponseIdを取得する
      */
