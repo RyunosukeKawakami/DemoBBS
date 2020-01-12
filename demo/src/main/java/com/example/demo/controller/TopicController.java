@@ -38,6 +38,12 @@ public class TopicController {
         return model;
     }
     
+    /**
+     * スレッド、レスポンスの削除
+     * @param id
+     * @param model
+     * @return
+     */
     @PostMapping
     public ModelAndView DeleteThread(@RequestParam("id") int id, ModelAndView model) {
         if (threadRepository.existsById(id)) {

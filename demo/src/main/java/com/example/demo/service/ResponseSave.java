@@ -48,6 +48,10 @@ public class ResponseSave {
         responseRepository.save(response);
     }
 
+    /**
+     * 押されたボタンのレスポンスidを検索して適切な場所に保存する。
+     * @param id primary_keyのid
+     */
     public void SaveGoodNum(int id) {
         Response response = responseRepository.findById(id);
         int goodNum = response.getGoodNum();

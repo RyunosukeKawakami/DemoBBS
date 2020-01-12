@@ -42,6 +42,15 @@ public class ThreadController {
         return model;
     }
 
+    /**
+     * 書き込まれたレスポンスのバリデーション及び、保存をする
+     * @param postResponse 書き込まれたレスポンスを受け取る
+     * @param result    バリデーションチェック
+     * @param id    スレッドのid
+     * @param principal ログインユーザの情報
+     * @param model
+     * @return
+     */
     @PostMapping
     public ModelAndView PostText(@ModelAttribute("Response") @Validated Response postResponse, BindingResult result,
             @PathVariable int id, Principal principal, ModelAndView model) {
@@ -55,6 +64,9 @@ public class ThreadController {
         return model;
     }
 
+    /**
+     * いいねの数を表示及び、保存する
+     */
     @PostMapping("/addGoodNum")
     public ModelAndView AddGoodNum(@RequestParam("id") int id, ModelAndView model) {
         log.info("id = {}", id);
@@ -64,6 +76,14 @@ public class ThreadController {
         return model;
     }
 
+    /**
+     * 表示に必要な情報をModelAndViewに詰め込む
+     * @param model
+     * @param responseList
+     * @param postResponse
+     * @param thread_id
+     * @return
+     */
     private ModelAndView addObjectThread(ModelAndView model, Iterable<Response> responseList, Response postResponse,
             int thread_id) {
         responseList = repository.findAllByThreadId(thread_id);
