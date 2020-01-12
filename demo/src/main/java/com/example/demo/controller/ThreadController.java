@@ -70,6 +70,12 @@ public class ThreadController {
         Thread thread = threadRepository.findById(thread_id);
         String title = thread.getTitle();
 
+        //trueのとき書き込みフォームが表示されるようにする
+        if (save.CanWriteResponse(thread_id))
+            model.addObject("CanWritable", true);
+        else
+            model.addObject("CanWritable", false);
+
         model.addObject("threadTitle", title);
         model.addObject("ResponseList", responseList);
         model.addObject("response", postResponse);
@@ -77,5 +83,4 @@ public class ThreadController {
         model.setViewName("topic/thread.html");
         return model;
     }
-
 }

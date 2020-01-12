@@ -77,7 +77,7 @@
             </div>
             
             <!-- レスポンス投稿フォームを表すカード -->
-            <div class="fixed-bottom card">
+            <div class="fixed-bottom card" th:if="${CanWritable} eq true">
                 <form method="post" th:action="@{/topic/thread/__${thread_id}__}" th:object="${Response}">
                     <label class="sr-only">投稿フォーム</label>
                     <textarea rows="5" class="form-control" th:field="*{text}" placeholder="投稿するテキストを入力"></textarea>
