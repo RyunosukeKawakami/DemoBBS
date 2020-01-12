@@ -56,6 +56,26 @@ public class ResponseSave {
 
         responseRepository.save(response);
     }
+
+    /**
+     * 次のレスポンスidが1001になるとき、falseを返す
+     * @param thread_id
+     * @return
+     */
+    public boolean CanWriteResponse(int thread_id) {
+        
+        //レスポンスがある場合のみ検索する
+        if (responseRepository.existsByThreadId(thread_id)) {
+            int next_response = GetLargestResponseId(thread_id);
+            if (next_response > 1000)
+                return false;
+            else
+                return true;
+        }
+        else {
+            return true;
+        }
+    }
     
     /**
      * スレッド内で最も大きいResponseIdを取得する
