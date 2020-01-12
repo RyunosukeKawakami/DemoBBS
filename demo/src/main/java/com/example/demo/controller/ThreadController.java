@@ -1,16 +1,11 @@
 package com.example.demo.controller;
 
 import java.security.Principal;
-
-import javax.enterprise.inject.Model;
-
 import com.example.demo.entity.Response;
 import com.example.demo.repository.ResponseRepository;
 import com.example.demo.repository.ThreadRepository;
 import com.example.demo.service.ResponseSave;
 import com.example.demo.entity.Thread;
-
-import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -22,7 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import lombok.extern.slf4j.Slf4j;
 
 /**

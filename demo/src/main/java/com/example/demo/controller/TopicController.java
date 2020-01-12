@@ -2,18 +2,12 @@ package com.example.demo.controller;
 
 import com.example.demo.repository.ResponseRepository;
 import com.example.demo.repository.ThreadRepository;
-
 import java.security.Principal;
-import java.util.List;
-
-import com.example.demo.entity.Response;
 import com.example.demo.entity.Thread;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

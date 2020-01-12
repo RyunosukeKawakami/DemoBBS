@@ -3,12 +3,9 @@ package com.example.demo.service;
 import java.security.Principal;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
-
 import com.example.demo.entity.Response;
 import com.example.demo.repository.ResponseRepository;
 import com.example.demo.repository.ThreadRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
