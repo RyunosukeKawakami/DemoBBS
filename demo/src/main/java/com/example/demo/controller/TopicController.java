@@ -1,9 +1,12 @@
 package com.example.demo.controller;
 
+import com.example.demo.repository.ResponseRepository;
 import com.example.demo.repository.ThreadRepository;
 
 import java.security.Principal;
+import java.util.List;
 
+import com.example.demo.entity.Response;
 import com.example.demo.entity.Thread;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +27,14 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping(value = "/topic")
 public class TopicController {
     @Autowired
-    ThreadRepository repository;
+    ThreadRepository threadRepository;
+    @Autowired
+    ResponseRepository responseRepository;
     Iterable<Thread> threadList;
 
     @GetMapping
     public ModelAndView ReturnTopicHTML(ModelAndView model, Principal Principal) {
-        threadList = repository.findAll();
+        threadList = threadRepository.findAll();
         Authentication auth = (Authentication) Principal;
         UserDetails account = (UserDetails) auth.getPrincipal();
 
@@ -41,8 +46,10 @@ public class TopicController {
     
     @PostMapping
     public ModelAndView DeleteThread(@RequestParam("id") int id, ModelAndView model) {
-        if (repository.existsById(id)) {
-            repository.deleteById(id);
+        if (threadRepository.existsById(id)) {
+            //スレッドのレスポンスも削除する
+            responseRepository.deleteByThreadId(id);
+            threadRepository.deleteById(id);
         }
 
         model.addObject("ThreadList", threadList);

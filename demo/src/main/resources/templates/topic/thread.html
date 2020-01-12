@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <style type="text/css">
+        body { padding-bottom: 300px; }
+    </style>
 
     <title>DemoBBS</title>
     <link rel="stylesheet" href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css">
@@ -24,19 +27,19 @@
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="../index.html">Home </a>
+                    <a class="nav-link" href="/index.html">Home </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../login">Log in</a>
+                    <a class="nav-link" href="/login">Log in</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../signup">Sign up</a>
+                    <a class="nav-link" href="/signup">Sign up</a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="/topic">Topic</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../contact">Contact</a>
+                    <a class="nav-link" href="/contact">Contact</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
@@ -48,14 +51,39 @@
 
     <div class="container">
         <div class="starter-template">
-            <h3>スレッドタイトル</h3>
+            <h3 th:text="${threadTitle}"></h3>
 
-            <!-- スレッドを表すカード -->
-            <div class="float-md-1-left card">
+            <!-- レスポンスを表すカード -->
+            <div th:each="response:${ResponseList}">
+                <div class="float-md-1-left">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-text my-sm-1 row">
+                                <div class="text-left col-2" th:text="|${response.responseId}：|"></div>
+                                <div class="col-2" th:text="|${response.author}|"></div>
+                                <div class="pull-right col-6" th:text="${response.date}"></div>
+                                
+                                <form method="post" th:action="@{/topic/thread/__${thread_id}__/addGoodNum(id = ${response.id})}">
+                                    <button class="col btn btn-outline-success" th:text="いいね！" th:if="${response.goodNum eq 0}"></button>
+                                    <button class="col btn btn-outline-success" th:text="|${response.goodNum}いいね！|" th:if="${response.goodNum ne 0}"></button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="card-body text-left">
+                            <p class="card-text my-sm-1" th:text="${response.text}"></p>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <!-- スレッド投稿フォームを表すカード -->
-            <div class="float card">
+            
+            <!-- レスポンス投稿フォームを表すカード -->
+            <div class="fixed-bottom card">
+                <form method="post" th:action="@{/topic/thread/__${thread_id}__}" th:object="${Response}">
+                    <label class="sr-only">投稿フォーム</label>
+                    <textarea rows="5" class="form-control" th:field="*{text}" placeholder="投稿するテキストを入力"></textarea>
+                    <br>
+                    <button class="btn btn-lg btn-primary w-25" type="submit">投稿</button>
+                </form>
             </div>
 
         </div>
