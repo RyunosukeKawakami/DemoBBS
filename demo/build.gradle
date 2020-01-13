@@ -19,6 +19,11 @@ configurations {
 	}
 }
 
+jar {
+	baseName = 'spring-boot-sample'
+	version =  '0.1.0'
+}
+
 repositories {
 	mavenCentral()
 }
@@ -29,6 +34,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-jetty'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
 	compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.9.Final'
@@ -48,3 +55,5 @@ dependencies {
 test {
 	useJUnitPlatform()
 }
+
+defaultTasks "clean", "build"
