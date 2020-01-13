@@ -22,25 +22,25 @@
 
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-          </li>
           <li class="nav-item">
+            <a class="nav-link" href="../index.html">Home </a>
+          </li>
+          <li class="nav-item active">
             <a class="nav-link" href="/login">Log in</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/signup">Sign up</a>
+            <a class="nav-link" href="../signup">Sign up</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/topic">Topic</a>
+            <a class="nav-link" href="../topic">Topic</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/contact">Contact</a>
+            <a class="nav-link" href="../contact">Contact</a>
           </li>
         </ul>
 
         <!-- ログイン状態のときに、ユーザ名を表すitemを表示する。 -->
-        <ur class="navbar-nav" th:if="${#httpServletRequest.remoteUser ne null}">
+        <ur class="navbar-nav">
           <li class="nav-item dropdown">
             <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false" sec:authentication="name">
@@ -50,7 +50,6 @@
             </div>
           </li>
         </ur>
-        </ur>
 
       </div>
     </nav>
@@ -59,11 +58,10 @@
 
       <div class="starter-template">
         <h1>DemoBBS</h1>
-        <p class="lead">
-          DemoBBSは、様々な話題について掲示板を立てて会話できる<br> 
-          サイトです！初めての方は<a href="/signup">Sign up</a>から登録していただき<br>
-          会員の方は<a href="/login">Login</a>より進んでください！
-        </p>
+            <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+            <h1 class="h3 mb-3 font-weight-normal">Log in</h1>
+            <div>ログインに成功しました！</div>
+            <div>トピックページにリダイレクトします。</div>
       </div>
 
     </div><!-- /.container -->

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -24,42 +24,61 @@
           <li class="nav-item">
             <a class="nav-link" href="../index.html">Home </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../Login/index.html">Log in</a>
-          </li>
           <li class="nav-item active">
-            <a class="nav-link" href="index.html">Sign up</a>
+            <a class="nav-link" href="/login">Log in</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../Topic/index.html">Topic</a>
+            <a class="nav-link" href="../signup">Sign up</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../Contact/index.html">Contact</a>
+            <a class="nav-link" href="../topic">Topic</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../contact">Contact</a>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+
+        <!-- ログイン状態のときに、ユーザ名を表すitemを表示する。 -->
+        <ur class="navbar-nav" th:if="${#httpServletRequest.remoteUser ne null}">
+          <li class="nav-item dropdown">
+            <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false" sec:authentication="name">
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/logout">Logout</a>
+            </div>
+          </li>
+        </ur>
+
       </div>
     </nav>
 
     <div class="container">
+
       <div class="starter-template">
         <h1>DemoBBS</h1>
-        <form class="form-sign in">
+        <form class="form-sign in" method="post" th:action="@{/loginProcess}" th:object="${UserAccount}">
             <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-            <h1 class="h3 mb-3 font-weight-normal">Sign up</h1>
-            <label for="inputEmail" class="sr-only">Email address</label>
-            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+            <h1 class="h3 mb-3 font-weight-normal">Log in</h1>
+
+            <!-- バリデーションチェック -->
+            <li th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color:red"></li>
+            <li th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" style="color:red"></li>
+            <div th:if="${param.error}" class="alert alert-danger" role="alert" color="red">ユーザ名またはパスワードが異なります</div>
+            
+            <label for="inputEmail" class="sr-only">UserName</label>
+            <input type="text" name="userName" id="inputUserName" class="form-control" placeholder="UserName" th:field="*{userName}" required autofocus>
+           
             <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+            <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" th:field="*{password}" required>
             <br>
             <br>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+            <button class="btn btn-lg btn-primary btn-block" type="submit"> Log in</button>
         </form>
       </div>
+
     </div><!-- /.container -->
+
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

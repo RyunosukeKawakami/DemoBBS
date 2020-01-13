@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -22,25 +21,25 @@
 
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="../index.html">Home </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../login">Log in</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../signup">Sign up</a>
+          </li>
           <li class="nav-item active">
-            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/login">Log in</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/signup">Sign up</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="/topic">Topic</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/contact">Contact</a>
+            <a class="nav-link" href="../contact">Contact</a>
           </li>
         </ul>
 
         <!-- ログイン状態のときに、ユーザ名を表すitemを表示する。 -->
-        <ur class="navbar-nav" th:if="${#httpServletRequest.remoteUser ne null}">
+        <ur class="navbar-nav">
           <li class="nav-item dropdown">
             <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false" sec:authentication="name">
@@ -50,22 +49,37 @@
             </div>
           </li>
         </ur>
-        </ur>
 
       </div>
     </nav>
 
     <div class="container">
-
       <div class="starter-template">
-        <h1>DemoBBS</h1>
-        <p class="lead">
-          DemoBBSは、様々な話題について掲示板を立てて会話できる<br> 
-          サイトです！初めての方は<a href="/signup">Sign up</a>から登録していただき<br>
-          会員の方は<a href="/login">Login</a>より進んでください！
-        </p>
-      </div>
+        <h3>スレッド一覧</h3>
+        <a class="nav-link" href="/topic/createThread">新規スレッドを作成する</a>
+        
+        <div th:each="thread:${ThreadList}">
+          <!-- スレッドを表すカード -->
+          <div class="float-md-3-left">
+            <div class="card">
+              <a class="card-header text-left btn btn-link" th:href="@{/topic/thread/__${thread.id}__}">
+                <h5 th:text="${thread.title}"></h5>
+              </a>
+              <div class="card-body text-left">
+                <p class="card-text my-sm-1" th:text="'製作者：'+ ${thread.author}"></p>
+                <p class="card-text my-sm-1" th:text="'作成日：'+ ${thread.createDate}"></p>
+                <p class="card-text text-muted my-sm-1" color="gray">ここに1スレッド目が表示される予定</p>
+                <!-- 削除ボタン -->
+                <!-- 作者とログインユーザーが同じ時に削除する -->
+                <form method="post" th:action="@{/topic(id=${thread.id})}" th:if="${thread.author eq LoginUser.userName}">
+                <button class="btn btn-danger btn-xs">削除</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
 
+      </div>
     </div><!-- /.container -->
 
 

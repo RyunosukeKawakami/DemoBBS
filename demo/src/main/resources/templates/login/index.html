@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -22,20 +21,20 @@
 
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-          </li>
           <li class="nav-item">
+            <a class="nav-link" href="../index.html">Home </a>
+          </li>
+          <li class="nav-item active">
             <a class="nav-link" href="/login">Log in</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/signup">Sign up</a>
+            <a class="nav-link" href="../signup">Sign up</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/topic">Topic</a>
+            <a class="nav-link" href="../topic">Topic</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/contact">Contact</a>
+            <a class="nav-link" href="../contact">Contact</a>
           </li>
         </ul>
 
@@ -50,7 +49,6 @@
             </div>
           </li>
         </ur>
-        </ur>
 
       </div>
     </nav>
@@ -59,11 +57,24 @@
 
       <div class="starter-template">
         <h1>DemoBBS</h1>
-        <p class="lead">
-          DemoBBSは、様々な話題について掲示板を立てて会話できる<br> 
-          サイトです！初めての方は<a href="/signup">Sign up</a>から登録していただき<br>
-          会員の方は<a href="/login">Login</a>より進んでください！
-        </p>
+        <form class="form-sign in" method="post" th:action="@{/loginProcess}" th:object="${UserAccount}">
+            <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+            <h1 class="h3 mb-3 font-weight-normal">Log in</h1>
+
+            <!-- バリデーションチェック -->
+            <li th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color:red"></li>
+            <li th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" style="color:red"></li>
+            <div th:if="${param.error}" class="alert alert-danger" role="alert" color="red">ユーザ名またはパスワードが異なります</div>
+            
+            <label for="inputEmail" class="sr-only">UserName</label>
+            <input type="text" name="userName" id="inputUserName" class="form-control" placeholder="UserName" th:field="*{userName}" required autofocus>
+           
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" th:field="*{password}" required>
+            <br>
+            <br>
+            <button class="btn btn-lg btn-primary btn-block" type="submit"> Log in</button>
+        </form>
       </div>
 
     </div><!-- /.container -->
