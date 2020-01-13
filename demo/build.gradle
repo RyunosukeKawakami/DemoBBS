@@ -29,6 +29,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
 	compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.9.Final'
 	compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.4.9.Final'
