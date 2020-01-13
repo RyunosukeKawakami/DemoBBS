@@ -40,7 +40,7 @@
         </ul>
 
         <!-- ログイン状態のときに、ユーザ名を表すitemを表示する。 -->
-        <ur class="navbar-nav">
+        <ur class="navbar-nav" th:if="${#httpServletRequest.remoteUser ne null}">
           <li class="nav-item dropdown">
             <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false" sec:authentication="name">
