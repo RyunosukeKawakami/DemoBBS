@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <style type="text/css">
+        body { padding-bottom: 300px; }
+    </style>
+
+    <title>DemoBBS</title>
+    <link rel="stylesheet" href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css">
+    <link href="https://getbootstrap.com/docs/4.0/examples/starter-template/starter-template.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="#">Demo BBS</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/index.html">Home </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Log in</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/signup">Sign up</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/topic">Topic</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contact">Contact</a>
+                </li>
+            </ul>
+
+            <!-- ログイン状態のときに、ユーザ名を表すitemを表示する。 -->
+            <ur class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false" th:text = "${LoggingUser} + 'さん'">
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Logout</a>
+                    </div>
+                </li>
+            </ur>
+
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="starter-template">
+            <h3 th:text="${threadTitle}"></h3>
+
+            <!-- レスポンスを表すカード -->
+            <div th:each="response:${ResponseList}">
+                <div class="float-md-1-left">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-text my-sm-1 row">
+                                <div class="text-left col-2" th:text="|${response.responseId}：|"></div>
+                                <div class="col-2" th:text="|${response.author}|"></div>
+                                <div class="pull-right col-6" th:text="${response.date}"></div>
+                                
+                                <form method="post" th:action="@{/topic/thread/__${thread_id}__/addGoodNum(id = ${response.id})}">
+                                    <button class="col btn btn-outline-success" th:text="いいね！" th:if="${response.goodNum eq 0}"></button>
+                                    <button class="col btn btn-outline-success" th:text="|${response.goodNum}いいね！|" th:if="${response.goodNum ne 0}"></button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="card-body text-left">
+                            <p class="card-text my-sm-1" th:text="${response.text}"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- レスポンス投稿フォームを表すカード -->
+            <div class="fixed-bottom card" th:if="${CanWritable} eq true">
+                <form method="post" th:action="@{/topic/thread/__${thread_id}__}" th:object="${Response}">
+                    <label class="sr-only">投稿フォーム</label>
+                    <textarea rows="5" class="form-control" th:field="*{text}" placeholder="投稿するテキストを入力"></textarea>
+                    <br>
+                    <button class="btn btn-lg btn-primary w-25" type="submit">投稿</button>
+                </form>
+            </div>
+
+        </div>
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+        integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

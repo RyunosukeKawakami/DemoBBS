@@ -19,11 +19,6 @@ configurations {
 	}
 }
 
-jar {
-	baseName = 'spring-boot-sample'
-	version =  '0.1.0'
-}
-
 repositories {
 	mavenCentral()
 }
@@ -37,23 +32,24 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-jetty'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
-	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
-	compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.9.Final'
-	compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.4.9.Final'
-	compileOnly 'org.projectlombok:lombok'
-	compile group: 'javax', name: 'javaee-api', version: '8.0'
+	implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
+	implementation group: 'org.hibernate', name: 'hibernate-core', version: '5.4.9.Final'
+	implementation group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.4.9.Final'
+	implementation 'org.projectlombok:lombok'
+	implementation group: 'javax', name: 'javaee-api', version: '8.0'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'mysql:mysql-connector-java'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 	testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.14.0'
-	testCompileOnly 'junit:junit:4.12'
+	testImplementation 'junit:junit:4.12'
 	testRuntimeOnly 'org.junit.vintage:junit-vintage-engine:5.3.1'
 }
+
+task stage(dependsOn: ['build', 'clean'])
+build.mustRunAfter clean
 
 test {
 	useJUnitPlatform()
 }
-
-defaultTasks "clean", "build"
