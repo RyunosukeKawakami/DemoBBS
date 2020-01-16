@@ -38,7 +38,7 @@ dependencies {
 	implementation 'org.projectlombok:lombok'
 	implementation group: 'javax', name: 'javaee-api', version: '8.0'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	runtimeOnly 'mysql:mysql-connector-java'
+	runtimeOnly 'mysql:mysql-connector-java:8.0.18'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
