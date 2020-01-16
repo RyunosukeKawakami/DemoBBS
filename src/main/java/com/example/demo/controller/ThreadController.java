@@ -17,14 +17,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * ThreadDetails
  */
 @RequestMapping(path = "/topic/thread/{id}")
 @Controller
-@Slf4j
 public class ThreadController {
     @Autowired
     ResponseRepository repository;
@@ -57,7 +55,6 @@ public class ThreadController {
 
     @PostMapping("/addGoodNum")
     public ModelAndView AddGoodNum(@RequestParam("id") int id, ModelAndView model) {
-        log.info("id = {}", id);
         save.SaveGoodNum(id);
         
         model.setViewName("redirect:/topic/thread/{id}");
