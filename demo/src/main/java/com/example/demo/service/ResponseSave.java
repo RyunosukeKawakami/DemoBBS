@@ -48,6 +48,10 @@ public class ResponseSave {
         responseRepository.save(response);
     }
 
+    /**
+     * 押されたボタンのレスポンスidを検索して適切な場所に保存する。
+     * @param id primary_keyのid
+     */
     public void SaveGoodNum(int id) {
         Response response = responseRepository.findById(id);
         int goodNum = response.getGoodNum();
@@ -86,8 +90,13 @@ public class ResponseSave {
         int max = responseList.get(0).getId();
 
         //スレッド内で最新のレスポンスのIDを取得する
-        for (Response r : responseList) {
-            max = Math.max(max, r.getId());
+        try{
+            for (Response r : responseList) {
+                max = Math.max(max, r.getId());
+            }
+        }
+        catch(ArrayIndexOutOfBoundsException e){
+            return 0;
         }
 
         //IdよりレスポンスID（表示するID）を検索して返す

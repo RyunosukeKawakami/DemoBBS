@@ -36,7 +36,7 @@ public class CreateThreadController {
     }
 
     /**
-     * 
+     * スレッドの作成、保存をする。
      * @param thread
      * @param result バリデーションチェック
      * @param model
