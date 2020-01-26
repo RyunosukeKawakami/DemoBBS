@@ -70,8 +70,13 @@ public class ResponseSave {
         int max = responseList.get(0).getId();
 
         //スレッド内で最新のレスポンスのIDを取得する
-        for (Response r : responseList) {
-            max = Math.max(max, r.getId());
+        try{
+            for (Response r : responseList) {
+                max = Math.max(max, r.getId());
+            }
+        }
+        catch(ArrayIndexOutOfBoundsException e){
+            return 0;
         }
 
         //IdよりレスポンスID（表示するID）を検索して返す
