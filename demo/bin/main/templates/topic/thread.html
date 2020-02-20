@@ -54,7 +54,7 @@
             <h3 th:text="${threadTitle}"></h3>
 
             <!-- レスポンスを表すカード -->
-            <div th:each="response:${ResponseList}">
+            <div th:each="response:${ResponseList}" th:if="response.id != null">
                 <div class="float-md-1-left">
                     <div class="card">
                         <div class="card-header">
